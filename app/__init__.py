@@ -1,23 +1,14 @@
 from flask import Flask
-import sqlite3
 from flask_sqlalchemy import SQLAlchemy
-import flask_restful import Api
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqllite:///crud1.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///storage.db"
 db = SQLAlchemy(app)
-api = Api(app)
+migrate = Migrate(app, db)
 
-from app.models.survivors import Survivors
-with app.app_context(): #garantir que as tabelas existam
-    db.create_all()
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 
-
-'''
-@app.route("/")
-def index():
-    return "<h1> Aplicação Flask</h1>"
-'''
+from app.controllers import default
