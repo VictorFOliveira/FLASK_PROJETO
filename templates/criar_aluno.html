@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Aluno</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_create.css') }}">
+
+</head>
+<body>
+    <h1>Cadastrar aluno e nota</h1>
+    <form method="POST" action="/alunos">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome"><br>
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula"><br>
+        <label for="av1">Nota 1:</label>
+        <input type="text" id="av1" name="av1"><br>
+        <label for="av2">Nota 2:</label>
+        <input type="text" id="av2" name="av2"><br>
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+</html>

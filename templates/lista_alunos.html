@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Alunos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_listagem.css') }}">
+
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Média</th>
+            <th>Opções</th>
+        </tr>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.calcular_media() }}</td>
+            <td>
+              <div class="options">
+                <a href="/alunos/atualizar/{{ aluno.id }}">Atualizar</a>
+                <a href="/alunos/deletar/{{ aluno.id }}">Deletar</a>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/alunos">Criar Aluno</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atualizar Aluno</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_update.css') }}">
+
+</head>
+<body>
+    <h1>Atualizar Aluno</h1>
+    <form method="post" action="/alunos/atualizar/{{ aluno.id }}">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ aluno.nome }}"><br><br>
+    
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula" value="{{ aluno.matricula }}"><br><br>
+    
+        <label for="av1">Nota 1:</label>
+        <input type="text" id="av1" name="av1" value="{{ aluno.av1 }}"><br><br>
+    
+        <label for="av2">Nota 2:</label>
+        <input type="text" id="av2" name="av2" value="{{ aluno.av2 }}"><br><br>
+    
+        <input type="submit" value="Atualizar">
+    </form>
+</body>
+</html>
