@@ -66,6 +66,7 @@ def atualizar_aluno(id):
         return render_template('alunos_update.html', aluno=aluno)
 
 @bp_usuarios.route('/deletar/<int:id>', methods=['GET', 'POST'])
+@bp_usuarios.route('/deletar/<int:id>', methods=['GET', 'POST'])
 def deletar_aluno(id):
     """
     Rota para deletar um aluno do banco de dados.
@@ -77,4 +78,11 @@ def deletar_aluno(id):
     Caso contrário, renderiza o template 'alunos_delete.html' passando o objeto aluno como parâmetro para o template.
     """
     aluno = UserAluno.query.get(id)
+
+    if request.method == 'POST':
+        db.session.delete(aluno)  # Deleta o aluno do banco de dados
+        db.session.commit()  # Realiza o commit das alterações
+        return redirect('/alunos/listar')
+    
+    return render_template('alunos_delete.html', aluno=aluno)
 
